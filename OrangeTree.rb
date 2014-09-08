@@ -17,6 +17,7 @@ class OrangeTree
 
       @age += 1
       growing_tree
+      @num_fruit = 0 #reset the number of fruit to 0
       adding_fruit
     end
   end
@@ -74,6 +75,13 @@ class OrangeTree
   end
 
 
-end
+end  # this is the end of the OrangeTree class
 
-lime = OrangeTree.new(5)
+class OrangeGrove
+  attr_accessor :grove_id
+
+  def initialize(id)
+    @grove_id = id
+  end
+
+end
