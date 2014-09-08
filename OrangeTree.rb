@@ -1,20 +1,58 @@
 class OrangeTree
-  attr_accessor :height, :alive, :age
+  attr_accessor :height, :alive, :age, :num_fruit
 
   def initialize(height)
     @height = height
     @alive = true  # the tree will be initialized to alive as true
     @age = 0 # initialize age to 0
+    @num_fruit = 0
   end
 
   def one_year_passes
-    @age += 1
+
+    if @age >= 12
+      @alive = false
+      puts "Your #{@age} year old tree is dead"
+    else
+
+      @age += 1
+      growing_tree
+      adding_fruit
+    end
+  end
+
+    def growing_tree
+      if @age < 3
+        @height +=2  # if tree is less than 3 years, it grows 2 feet a year
+      elsif @age >= 3 && @age < 12
+        @height += 1
+      end
+
+    end
+
+  def adding_fruit
+    if @age > 3
+      @num_fruit += 100
+    end
+
+  end
+
+  def count_the_oranges
+    puts "the number of fruit is #{@num_fruit}"
+  end
+
+  def pick_an_orange
+    @num_fruit -= 1
   end
 
 
   def height
-    puts @height
+    puts "The tree is #{@height} feet tall"
 
+  end
+
+  def fruit
+    puts "It has #{@num_fruit} fruit"
   end
 
 
