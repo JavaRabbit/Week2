@@ -78,10 +78,12 @@ class OrangeTree
 end  # this is the end of the OrangeTree class
 
 class OrangeGrove
-  attr_accessor :grove_id
+  attr_accessor :grove_id, :trees
 
   def initialize(id)
     @grove_id = id
+    @trees = []  # store the trees in the grove in an array
+
   end
 
 end
