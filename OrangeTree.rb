@@ -86,4 +86,14 @@ class OrangeGrove
 
   end
 
+  def count_all_oranges
+    num = 0 #initialize number of oranges to 0
+    @trees.each do |tree|
+      num = num + tree.num_fruit
+    end
+
+    puts "the total num of fruits is #{num}"
+
+  end
+
 end
