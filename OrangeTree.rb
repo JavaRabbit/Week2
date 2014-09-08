@@ -42,7 +42,25 @@ class OrangeTree
   end
 
   def pick_an_orange
-    @num_fruit -= 1
+    if @num_fruit >= 1
+      @num_fruit -= 1
+    else
+      puts "you have no oranges to pick"
+    end
+  end
+
+  def pickMoreOranges
+    puts "how many oranges do you want to pick?"
+    num = gets.chomp.to_i
+
+    if num <= @num_fruit
+      @num_fruit = @num_fruit - num
+      puts "you now have #{@num_fruit} oranges left."
+      puts "Please make some orange marmalade."
+    else
+      puts "you don't have that many fruit to pick."
+    end
+
   end
 
 
