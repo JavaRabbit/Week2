@@ -96,4 +96,10 @@ class OrangeGrove
 
   end
 
+  def one_year_passes
+    @trees.each do |tree|
+      tree.one_year_passes
+    end
+  end
+
 end
