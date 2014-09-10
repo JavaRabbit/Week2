@@ -42,5 +42,21 @@ Neptune.num_planets.push(Nysa)
 # Display the number of planets that Neptune has
 Neptune.get_num_of_planets
 
+# Add Kepler to Neptune's solar system
+Neptune.num_planets.push(Kepler)
+puts "Kepler has been added to the solar system"
+
 # Display the rate of roation for Kepler
 puts "The rate of rotation for Kepler is #{Kepler.rate_rotation}"
+
+
+# display the names of all the planets in the Neptune solar system
+puts "the name of the planets are:"
+
+Neptune.num_planets.each do |hash|
+  Planet = Planet.new(hash)
+  puts Planet.name
+end
+
+#puts "Which planet do you want to learn more about?"
+#planet = gets.chomp
