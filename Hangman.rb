@@ -1,3 +1,6 @@
+require "colorize"
+
+
 def welcome
   puts "Welcome to the Hangman game!"
 end
@@ -13,7 +16,6 @@ end
 
 
 def displayBoard
-  #puts @theWord.length
 
   @theWord.length.times do
     print "-"
@@ -30,34 +32,43 @@ def welcomePlayer2
 
 end
 
-def displayHangman
 
-  puts "|  ---------"
-  puts "|  |/      |"
-  puts "|  |"
-  puts "|  |"
-  puts "|  |"
-  puts "|  |"
-  puts "|  |"
-  puts "|  |"
-  puts "|-----------"
-end
+
+# create an array that contains all the guessed characters
+@guesses = []
+@goodGuess = []
+@badGuess = []
 
 def guessLetter
+  print "What if your first guess:"
+  # get a check here that only 1 letter is entered
+  @theGuess = gets.chomp
+  @guesses << @theGuess
+  puts "the letters are guessed are #{@guesses}"
 
+  #check if that letter exists in the word
+  puts @theArray.include?(@theGuess)
 end
+
+# create a class variable that is the
+@theArray = []
 
 def startGuess
   # Display to the user the number of positions
   puts "Your job is to find the word that has #{@theWord.length} characters."
-  theArray = @theWord.chars
-  print theArray
-  puts
+  @theArray = @theWord.chars
+  #print @theArray
+  #puts
+  # while the word has not been guessed
+  guessLetter
 
 
 end
 
+def letterCheck
 
+
+end
 
 
 
@@ -69,3 +80,17 @@ getWord
 welcomePlayer2
 displayHangman
 startGuess
+
+
+def displayHangman
+
+  puts "|  ---------".colorize(:blue)
+  puts "|  |/      |"
+  puts "|  |"
+  puts "|  |"
+  puts "|  |"
+  puts "|  |"
+  puts "|  |"
+  puts "|  |"
+  puts "|-----------"
+end
