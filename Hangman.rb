@@ -1,13 +1,19 @@
 require "colorize"
 
+# this method gets the word from Player 1
+@theWord = ""
+@guesses = []
+@goodGuess = []
+@badGuess = []
+# create a class variable that is the
+@theArray = []
 
 def welcome
   puts "Welcome to the Hangman game!"
 end
 
 
-# this method gets the word from Player 1
-@theWord = ""
+
 
 def getWord
   puts "What word do you want to use?"
@@ -24,7 +30,20 @@ def displayBoard
   # create a new line
   puts ""
 
+  #puts @theArray.length
+  #puts @theArray[3]
+  @theArray.each do |item|
+    print item
+  end
+
+  puts ""
+
+ 
 end
+
+
+
+
 
 def welcomePlayer2
   puts "Hi there!"
@@ -34,32 +53,39 @@ end
 
 
 
-# create an array that contains all the guessed characters
-@guesses = []
-@goodGuess = []
-@badGuess = []
 
 def guessLetter
-  print "What if your first guess:"
+  print "What is your guess:"
   # get a check here that only 1 letter is entered
   @theGuess = gets.chomp
   @guesses << @theGuess
   puts "the letters are guessed are #{@guesses}"
 
   #check if that letter exists in the word
-  puts @theArray.include?(@theGuess)
+  if  @theArray.include?(@theGuess)
+    #put @theGuess into @goodGuess
+    @goodGuess << @theGuess
+  else
+    # put @theGuess into @badGuess
+    @badGuess << @theGuess
+  end
+
+  displayBoard
+
 end
 
-# create a class variable that is the
-@theArray = []
+
 
 def startGuess
   # Display to the user the number of positions
   puts "Your job is to find the word that has #{@theWord.length} characters."
+
+  # an array is created from theWord
   @theArray = @theWord.chars
   #print @theArray
   #puts
   # while the word has not been guessed
+
   guessLetter
 
 
@@ -70,16 +96,9 @@ def letterCheck
 
 end
 
-
-
-
-# run the code
-welcome
-getWord
-#displayBoard
-welcomePlayer2
-displayHangman
-startGuess
+def displayGoodGuess
+  puts @goodGuess
+end
 
 
 def displayHangman
@@ -94,3 +113,12 @@ def displayHangman
   puts "|  |"
   puts "|-----------"
 end
+
+
+# run the code
+welcome
+getWord
+displayBoard
+welcomePlayer2
+displayHangman
+startGuess
