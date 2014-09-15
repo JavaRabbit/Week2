@@ -1,47 +1,53 @@
 require "colorize"
 
-# this method gets the word from Player 1
-@theWord = ""
-@guesses = []
-@goodGuess = []
-@badGuess = []
-# create a class variable that is the
-@theArray = []
+class Hangman
 
-def welcome
-  puts "Welcome to the Hangman game!"
-end
-
-
-
-
-def getWord
-  puts "What word do you want to use?"
-  @theWord = gets.chomp.downcase
-end
+  def initialize
+   # this method gets the word from Player 1
+   @theWord = ""
+   @guesses = []
+   @goodGuess = []
+   @badGuess = []
+   # create a class variable that is the
+   @theArray = []
+   @theGuess = ""
+  end  # end of initialize
 
 
-def displayBoard
 
-  @theWord.length.times do
+
+  def getWord
+   puts "Player_1, What word do you want to use?"
+   @theWord = gets.chomp.downcase
+
+   # an array is created from theWord
+   @theArray = @theWord.chars
+
+  end # end of getWord
+
+
+  def displayBoard
+   @theWord.length.times do
     print "-"
+   end
+
+   # create a new line
+   puts ""
+
+   #puts @theArray.length
+   #puts @theArray[3]
+   @theArray.each do |item|
+    #print item
+    if @goodGuess.include?(item)
+      print item
+    else
+      print "-"
+    end
+
   end
 
-  # create a new line
-  puts ""
-
-  #puts @theArray.length
-  #puts @theArray[3]
-  @theArray.each do |item|
-    print item
-  end
-
-  puts ""
-
- 
-end
-
-
+   #puts ""
+  end # end displayBoard
 
 
 
@@ -58,10 +64,15 @@ def guessLetter
   print "What is your guess:"
   # get a check here that only 1 letter is entered
   @theGuess = gets.chomp
-  @guesses << @theGuess
-  puts "the letters are guessed are #{@guesses}"
 
-  #check if that letter exists in the word
+  # check if theGuess is already in @guesses
+  if @guesses.include?(@theGuess)
+    puts "You already tried that guess. Try another letter"
+    #h.guessLetter # or repeat def guessLetter
+  else
+    @guesses << @theGuess # this puts theGuess into the guesses array
+  end
+
   if  @theArray.include?(@theGuess)
     #put @theGuess into @goodGuess
     @goodGuess << @theGuess
@@ -71,30 +82,21 @@ def guessLetter
   end
 
   displayBoard
+  puts @guesses
 
-end
+end # end guessLetter
 
 
 
 def startGuess
-  # Display to the user the number of positions
-  puts "Your job is to find the word that has #{@theWord.length} characters."
 
-  # an array is created from theWord
-  @theArray = @theWord.chars
-  #print @theArray
-  #puts
   # while the word has not been guessed
 
   guessLetter
 
 
-end
+end  # end of startGuess
 
-def letterCheck
-
-
-end
 
 def displayGoodGuess
   puts @goodGuess
@@ -112,13 +114,22 @@ def displayHangman
   puts "|  |"
   puts "|  |"
   puts "|-----------"
-end
+end  # end displayHangman
 
+end # end of class Hangman
 
-# run the code
-welcome
-getWord
-displayBoard
-welcomePlayer2
-displayHangman
-startGuess
+def run
+  puts "Welcome to the Hangman game. You will need 2 players."
+
+ h = Hangman.new # this creates a new instance of the game
+ h.getWord
+ h.welcomePlayer2
+
+ h.startGuess
+
+ #h.displayHangman
+
+end  # end of run
+
+# this will start the program when run is called
+run
